@@ -68,4 +68,8 @@ public class Team {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public Team(String name) {
+        this.name = name;
+    }
 }

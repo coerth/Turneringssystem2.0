@@ -1,5 +1,8 @@
 package facades;
 
+import entities.Team;
+
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 public class EntityFacade {
@@ -18,4 +21,19 @@ public class EntityFacade {
         }
         return instance;
     }
+
+    public Team createTeam(String name) {
+        EntityManager em = emf.createEntityManager();
+        Team newTeam = new Team(name);
+
+        em.getTransaction().begin();
+        em.persist(newTeam);
+        em.getTransaction().commit();
+        em.close();
+
+        return newTeam;
+    }
+
 }
+
+
