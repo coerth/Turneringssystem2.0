@@ -12,8 +12,8 @@ public class Controller {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
     EntityFacade entityFacade = EntityFacade.getInstance(emf);
 
-    public void Ui(){
-        Team newTeam = entityFacade.createTeam("Shittymemes");
+    public void createTeam(){
+        Team newTeam = entityFacade.createTeam("Shitty Memes And Bigger Dreams");
         System.out.println("New team: "+newTeam +" has been created");
     }
 
