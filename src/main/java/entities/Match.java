@@ -20,11 +20,8 @@ public class Match {
     @JoinColumn(name = "Tournament_id", nullable = false)
     private Tournament tournament;
 
-    @ManyToMany
-    @JoinTable(name = "Match_has_Team",
-            joinColumns = @JoinColumn(name = "Match_id"),
-            inverseJoinColumns = @JoinColumn(name = "Team_id"))
-    private Set<Team> teams = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "match")
+    private Set<MatchHasTeam> matchHasTeams = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -50,12 +47,12 @@ public class Match {
         this.tournament = tournament;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
+    public Set<MatchHasTeam> getMatchHasTeams() {
+        return matchHasTeams;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setMatchHasTeams(Set<MatchHasTeam> matchHasTeams) {
+        this.matchHasTeams = matchHasTeams;
     }
 
 }

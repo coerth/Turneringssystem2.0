@@ -5,25 +5,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Tournament_has_Team")
 public class TournamentHasTeam {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EmbeddedId
-    private TournamentHasTeamId id;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    @MapsId("tournamentId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Tournament_id", nullable = false)
     private Tournament tournament;
 
-    @MapsId("teamId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Team_id", nullable = false)
     private Team team;
 
-    public TournamentHasTeamId getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(TournamentHasTeamId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

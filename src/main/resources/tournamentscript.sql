@@ -67,7 +67,8 @@ DROP TABLE IF EXISTS `Tournament`.`Tournament_has_Team` ;
 CREATE TABLE IF NOT EXISTS `Tournament`.`Tournament_has_Team` (
   `Tournament_id` INT NOT NULL,
   `Team_id` INT NOT NULL,
-  PRIMARY KEY (`Tournament_id`, `Team_id`),
+  `id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   INDEX `fk_Tournament_has_Team_Team1_idx` (`Team_id` ASC) VISIBLE,
   INDEX `fk_Tournament_has_Team_Tournament_idx` (`Tournament_id` ASC) VISIBLE,
   CONSTRAINT `fk_Tournament_has_Team_Tournament`
@@ -91,9 +92,10 @@ DROP TABLE IF EXISTS `Tournament`.`Match_has_Team` ;
 CREATE TABLE IF NOT EXISTS `Tournament`.`Match_has_Team` (
   `Match_id` INT NOT NULL,
   `Team_id` INT NOT NULL,
-  PRIMARY KEY (`Match_id`, `Team_id`),
+  `id` INT NOT NULL AUTO_INCREMENT,
   INDEX `fk_Match_has_Team_Team1_idx` (`Team_id` ASC) VISIBLE,
   INDEX `fk_Match_has_Team_Match1_idx` (`Match_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_Match_has_Team_Match1`
     FOREIGN KEY (`Match_id`)
     REFERENCES `Tournament`.`Match` (`id`)

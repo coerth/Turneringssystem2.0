@@ -21,11 +21,8 @@ public class Tournament {
     @Column(name = "game_type", length = 45)
     private String gameType;
 
-    @ManyToMany
-    @JoinTable(name = "Tournament_has_Team",
-            joinColumns = @JoinColumn(name = "Tournament_id"),
-            inverseJoinColumns = @JoinColumn(name = "Team_id"))
-    private Set<Team> teams = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "tournament")
+    private Set<TournamentHasTeam> tournamentHasTeams = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "tournament")
     private Set<Match> matches = new LinkedHashSet<>();
@@ -62,12 +59,12 @@ public class Tournament {
         this.gameType = gameType;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
+    public Set<TournamentHasTeam> getTournamentHasTeams() {
+        return tournamentHasTeams;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setTournamentHasTeams(Set<TournamentHasTeam> tournamentHasTeams) {
+        this.tournamentHasTeams = tournamentHasTeams;
     }
 
     public Set<Match> getMatches() {
