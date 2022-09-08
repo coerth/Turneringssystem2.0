@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -81,6 +82,12 @@ public class Tournament {
     public Tournament() {
     }
 
+    public Tournament(String name, LocalDate registrationDate, String gameType) {
+        this.name = name;
+        this.registrationDate = registrationDate;
+        this.gameType = gameType;
+    }
+
     @Override
     public String toString() {
         return "Tournament{" +
@@ -89,5 +96,18 @@ public class Tournament {
                 ", registrationDate=" + registrationDate +
                 ", gameType='" + gameType + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tournament that = (Tournament) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

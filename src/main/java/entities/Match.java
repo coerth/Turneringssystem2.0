@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -61,6 +62,11 @@ public class Match {
     public Match() {
     }
 
+    public Match(LocalDate date, Tournament tournament) {
+        this.date = date;
+        this.tournament = tournament;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
@@ -68,5 +74,18 @@ public class Match {
                 ", date=" + date +
                 ", tournament=" + tournament +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Match match = (Match) o;
+        return id.equals(match.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
