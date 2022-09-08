@@ -60,23 +60,22 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tournament`.`Tournament_has_Team`
+-- Table `Tournament`.`Match_has_Team`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Tournament`.`Tournament_has_Team` ;
+DROP TABLE IF EXISTS `Tournament`.`Match_has_Team` ;
 
-CREATE TABLE IF NOT EXISTS `Tournament`.`Tournament_has_Team` (
-  `Tournament_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Tournament`.`Match_has_Team` (
+  `Match_id` INT NOT NULL,
   `Team_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Tournament_has_Team_Team1_idx` (`Team_id` ASC) VISIBLE,
-  INDEX `fk_Tournament_has_Team_Tournament_idx` (`Tournament_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Tournament_has_Team_Tournament`
-    FOREIGN KEY (`Tournament_id`)
-    REFERENCES `Tournament`.`Tournament` (`id`)
+  PRIMARY KEY (`Match_id`, `Team_id`),
+  INDEX `fk_Match_has_Team_Team1_idx` (`Team_id` ASC) VISIBLE,
+  INDEX `fk_Match_has_Team_Match1_idx` (`Match_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Match_has_Team_Match1`
+    FOREIGN KEY (`Match_id`)
+    REFERENCES `Tournament`.`Match` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Tournament_has_Team_Team1`
+  CONSTRAINT `fk_Match_has_Team_Team1`
     FOREIGN KEY (`Team_id`)
     REFERENCES `Tournament`.`Team` (`id`)
     ON DELETE NO ACTION
@@ -85,23 +84,22 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tournament`.`Match_has_Team`
+-- Table `Tournament`.`Tournament_has_Team`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Tournament`.`Match_has_Team` ;
+DROP TABLE IF EXISTS `Tournament`.`Tournament_has_Team` ;
 
-CREATE TABLE IF NOT EXISTS `Tournament`.`Match_has_Team` (
-  `Match_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Tournament`.`Tournament_has_Team` (
+  `Tournament_id` INT NOT NULL,
   `Team_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
-  INDEX `fk_Match_has_Team_Team1_idx` (`Team_id` ASC) VISIBLE,
-  INDEX `fk_Match_has_Team_Match1_idx` (`Match_id` ASC) VISIBLE,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_Match_has_Team_Match1`
-    FOREIGN KEY (`Match_id`)
-    REFERENCES `Tournament`.`Match` (`id`)
+  PRIMARY KEY (`Tournament_id`, `Team_id`),
+  INDEX `fk_Tournament_has_Team_Team1_idx` (`Team_id` ASC) VISIBLE,
+  INDEX `fk_Tournament_has_Team_Tournament1_idx` (`Tournament_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Tournament_has_Team_Tournament1`
+    FOREIGN KEY (`Tournament_id`)
+    REFERENCES `Tournament`.`Tournament` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Match_has_Team_Team1`
+  CONSTRAINT `fk_Tournament_has_Team_Team1`
     FOREIGN KEY (`Team_id`)
     REFERENCES `Tournament`.`Team` (`id`)
     ON DELETE NO ACTION

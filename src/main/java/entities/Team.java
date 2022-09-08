@@ -14,11 +14,17 @@ public class Team {
     @Column(name = "name", length = 45)
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private Set<TournamentHasTeam> tournamentHasTeams = new LinkedHashSet<>();
+    @ManyToMany
+    @JoinTable(name = "Tournament_has_Team",
+            joinColumns = @JoinColumn(name = "Team_id"),
+            inverseJoinColumns = @JoinColumn(name = "Tournament_id"))
+    private Set<Tournament> tournaments = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "team")
-    private Set<MatchHasTeam> matchHasTeams = new LinkedHashSet<>();
+    @ManyToMany
+    @JoinTable(name = "Match_has_Team",
+            joinColumns = @JoinColumn(name = "Team_id"),
+            inverseJoinColumns = @JoinColumn(name = "Match_id"))
+    private Set<Match> matches = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -36,20 +42,20 @@ public class Team {
         this.name = name;
     }
 
-    public Set<TournamentHasTeam> getTournamentHasTeams() {
-        return tournamentHasTeams;
+    public Set<Tournament> getTournaments() {
+        return tournaments;
     }
 
-    public void setTournamentHasTeams(Set<TournamentHasTeam> tournamentHasTeams) {
-        this.tournamentHasTeams = tournamentHasTeams;
+    public void setTournaments(Set<Tournament> tournaments) {
+        this.tournaments = tournaments;
     }
 
-    public Set<MatchHasTeam> getMatchHasTeams() {
-        return matchHasTeams;
+    public Set<Match> getMatches() {
+        return matches;
     }
 
-    public void setMatchHasTeams(Set<MatchHasTeam> matchHasTeams) {
-        this.matchHasTeams = matchHasTeams;
+    public void setMatches(Set<Match> matches) {
+        this.matches = matches;
     }
 
 }
