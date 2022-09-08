@@ -58,4 +58,14 @@ public class Team {
         this.matches = matches;
     }
 
+    public Team() {
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

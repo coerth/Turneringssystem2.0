@@ -78,4 +78,16 @@ public class Tournament {
         this.matches = matches;
     }
 
+    public Tournament() {
+    }
+
+    @Override
+    public String toString() {
+        return "Tournament{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", gameType='" + gameType + '\'' +
+                '}';
+    }
 }

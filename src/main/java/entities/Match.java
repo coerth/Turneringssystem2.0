@@ -58,4 +58,15 @@ public class Match {
         this.teams = teams;
     }
 
+    public Match() {
+    }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", date=" + date +
+                ", tournament=" + tournament +
+                '}';
+    }
 }
