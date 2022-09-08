@@ -38,7 +38,6 @@ public class EntityFacade {
     {
         EntityManager em = emf.createEntityManager();
         try{
-
         return em.find(Team.class, id);
         }
         finally {
