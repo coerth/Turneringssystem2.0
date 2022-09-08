@@ -34,6 +34,19 @@ public class EntityFacade {
         return newTeam;
     }
 
+    public Team getTeam(int id)
+    {
+        EntityManager em = emf.createEntityManager();
+        try{
+
+        return em.find(Team.class, id);
+        }
+        finally {
+            em.close();
+        }
+
+    }
+
 }
 
 
