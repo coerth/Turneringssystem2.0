@@ -59,6 +59,7 @@ public class Match {
         this.teams = teams;
     }
 
+
     public Match() {
     }
 
