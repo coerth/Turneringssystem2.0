@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -30,6 +31,28 @@ public class Tournament {
 
     @OneToMany(mappedBy = "tournament")
     private Set<Match> matches = new LinkedHashSet<>();
+
+    @Column(name = "created")
+    private Instant created;
+
+    @Column(name = "updated")
+    private Instant updated;
+
+    public Instant getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Instant updated) {
+        this.updated = updated;
+    }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public void setCreated(Instant created) {
+        this.created = created;
+    }
 
     public Integer getId() {
         return id;
